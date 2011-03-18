@@ -3,7 +3,8 @@ require 'date'
 $target   = 'tbprobe'
 $sources  = 'sources.txt'
 
-$switches_gcc = '-lpthread -lm -Wall -Wextra -O2 '
+#switches_gcc = '-lpthread -lm -Wwrite-strings -Wshadow -Wconversion -W -Wall -Wextra -Wcast-qual -ansi -pedantic -O2 '
+$switches_gcc = '-lpthread -lm -Wwrite-strings -Wshadow -Wconversion -W -Wall -Wextra -O2 '
 $switches_icc = '-lpthread -Wall -O2 '
 #-wd981,593,2259
 
@@ -25,7 +26,7 @@ $benchfile = 'pgo-medium.txt'
 $sync_line = ''
 
 $windows_destiny	= '/home/miguel/Desktop/tbprobe-windows'
-$version_sensitive = 'main.o'
+$version_sensitive = 'tbprobe.o'
 #------------------------------------------------------------------------------------
 $errors_comp = 'errors_comp.txt'
 $errors_link = 'errors_link.txt'

@@ -46,8 +46,9 @@
 # define SET_ERRNO(n) errno = (n)
 #endif
 
+/*MAB: __i386 and __amd64 surrounded by defined() to silence intel compiler   */
 /*MAB: added __STRICT_ANSI__ flag so it could be checked with -ansi -pedantic */
-#if (__i386 || __amd64) && __GNUC__ >= 3 && !defined(__STRICT_ANSI__)
+#if (defined(__i386) || defined(__amd64)) && __GNUC__ >= 3 && !defined(__STRICT_ANSI__)
 # define lzf_movsb(dst, src, len)                \
    asm ("rep movsb"                              \
         : "=D" (dst), "=S" (src), "=c" (len)     \
@@ -147,6 +148,10 @@ lzf_decompress (const void *const in_data,  unsigned int in_len,
     }
   while (ip < in_end);
 
+#if 0
   return op - (u8 *)out_data;
+#else 
+  return (unsigned int)(op - (u8 *)out_data); /*MAB: cast to silence warning */
+#endif
 }
 
